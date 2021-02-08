@@ -3,9 +3,9 @@
     using Core.Entities;
     using Microsoft.EntityFrameworkCore;
 
-    public class EfDbContext : DbContext
+    public class EfMSQLContext : DbContext
     {
-        public EfDbContext(DbContextOptions<EfDbContext> options)
+        public EfMSQLContext(DbContextOptions<EfMSQLContext> options)
             : base(options)
         {
         }

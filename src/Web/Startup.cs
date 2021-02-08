@@ -28,7 +28,7 @@
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<EfDbContext>(
+            services.AddDbContext<EfMSQLContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
         }
 
