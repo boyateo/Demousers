@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
 
     using Core.Interfaces;
+    using Microsoft.EntityFrameworkCore;
 
     public class EFRepository<T> : IRepository<T>
         where T : class
@@ -52,9 +53,11 @@
             throw new NotImplementedException();
         }
 
-        public Task<IReadOnlyList<T>> ListAllAsync()
+        public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var result = await this.dbContext.Set<T>().ToListAsync(cancellationToken);
+
+            return result;
         }
 
         public Task<IReadOnlyList<T>> ListAsync()

@@ -1,20 +1,15 @@
 ﻿namespace Core.Interfaces
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using Core.Entities;
 
     public interface IRepository<T>
         where T : class
     {
         Task<T> GetByIdAsync(int id);
 
-        Task<IReadOnlyList<T>> ListAllAsync();
+        Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<T>> ListAsync();
 
