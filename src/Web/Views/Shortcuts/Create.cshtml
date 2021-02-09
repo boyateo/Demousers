@@ -2,31 +2,34 @@
 @model ShortcutCreateInputModel
 @{ 
     var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    var applications = Model.Applications.Select(x => new SelectListItem(x.Name + " Ver: " + x.Version, x.Id.ToString()));
 }
 
     <h1>Add Shortcut </h1>
 
     <form method="post" enctype="multipart/form-data">
+
         <div asp-validation-summary="All"></div>
+
         <div class="form-group row">
             <label>Description</label>
-            <input asp-for="@Model.Description" />
+            <input asp-for="Description" />
         </div>
         <div class="form-group row">
             <label>Category</label>
-            <select asp-for="@Model.CategoryId" asp-items="categories" />
+            <select asp-for="CategoryId" asp-items="categories"></select>
         </div>
         <div class="form-group row">
             <label>Command</label>
-            <input asp-for="@Model.Command" />
+            <input asp-for="Command" />
         </div>
         <div class="form-group row">
             <label>Key Combination</label>
-            <input asp-for="@Model.KeyCombination" />
+            <input asp-for="KeyCombination" />
         </div>
         <div class="form-group row">
             <label>Application</label>
-            <input asp-for="@Model.ApplicationId" />
+            <select asp-for="ApplicationId" asp-items="applications"></select>
         </div>
-            <input type="submit" class="btn btn-primary" />
+        <input type="submit" class="btn btn-primary" />
     </form>

@@ -12,13 +12,18 @@
 
     public class ShortcutsController : Controller
     {
-        private readonly IRepository<Shortcut> repository;
+        private readonly IRepository<Shortcut> shortcutsRepository;
         private readonly IRepository<Category> categoriesRepository;
+        private readonly IRepository<Application> applicatonRepository;
 
-        public ShortcutsController(IRepository<Shortcut> repository, IRepository<Category> categoriesRepository)
+        public ShortcutsController(
+            IRepository<Shortcut> shortcutsRepository,
+            IRepository<Category> categoriesRepository,
+            IRepository<Application> applicatonRepository)
         {
-            this.repository = repository;
+            this.shortcutsRepository = shortcutsRepository;
             this.categoriesRepository = categoriesRepository;
+            this.applicatonRepository = applicatonRepository;
         }
 
         [HttpGet]
@@ -26,10 +31,14 @@
         {
             // TODO: use services
             var categories = await this.categoriesRepository.ListAllAsync();
-            var items = categories.Select(x => x).OrderBy(x => x.Name).ToList();
+            var categoriesItems = categories.Select(x => x).OrderBy(x => x.Name).ToList();
+            var applications = await this.applicatonRepository.ListAllAsync();
+            var applicationsItems = applications.Select(x => x).OrderBy(x => x.Name).ToList();
+
             var vm = new ShortcutCreateInputModel
             {
-                Categories = items,
+                Categories = categoriesItems,
+                Applications = applicationsItems,
             };
 
             return this.View(vm);
@@ -46,7 +55,7 @@
                 Description = input.Description,
                 KeyCombination = input.KeyCombination,
             };
-            await this.repository.AddAsync(newShortcut);
+            await this.shortcutsRepository.AddAsync(newShortcut);
 
             return this.Ok();
         }

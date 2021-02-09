@@ -20,5 +20,7 @@
         public List<Category> Categories { get; set; }
 
         public int ApplicationId { get; set; }
+
+        public List<Application> Applications { get; set; }
     }
 }
