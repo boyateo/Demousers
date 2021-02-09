@@ -21,6 +21,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (true) // TODO: add condition
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Shortcuts" asp-action="Create">Add Shortcut</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Create">Add Category</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Create">Add Application</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>

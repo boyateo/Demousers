@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Core.Interfaces;
     using Infrastructure.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -30,6 +30,8 @@
 
             services.AddDbContext<EfMSQLContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
