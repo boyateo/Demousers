@@ -48,9 +48,9 @@
             throw new NotImplementedException();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
@@ -65,9 +65,10 @@
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            this.dbContext.Entry(entity).State = EntityState.Modified;
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

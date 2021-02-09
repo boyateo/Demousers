@@ -39,5 +39,36 @@
 
             return this.Redirect("/");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var applicationBeingEdited = await this.applicationsRepository.GetByIdAsync(id);
+
+            if (applicationBeingEdited == null)
+            {
+                return this.NotFound();
+            }
+
+            var viewmodel = new ApplicationEditInputModel
+            {
+                Name = applicationBeingEdited.Name,
+                Version = applicationBeingEdited.Version,
+            };
+
+            return this.View(viewmodel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationEditInputModel input)
+        {
+            var applicationBeingEdited = await this.applicationsRepository.GetByIdAsync(input.Id);
+            applicationBeingEdited.Name = input.Name;
+            applicationBeingEdited.Version = input.Version;
+
+            await this.applicationsRepository.UpdateAsync(applicationBeingEdited);
+
+            return this.Redirect("/");
+        }
     }
 }

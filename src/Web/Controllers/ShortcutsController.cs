@@ -55,6 +55,7 @@
                 Description = input.Description,
                 KeyCombination = input.KeyCombination,
             };
+
             await this.shortcutsRepository.AddAsync(newShortcut);
 
             return this.Ok();
