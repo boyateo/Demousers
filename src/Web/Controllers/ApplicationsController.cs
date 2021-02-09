@@ -34,9 +34,10 @@
                 Name = input.Name,
                 Version = input.Version,
             };
+
             await this.applicationsRepository.AddAsync(newApplication);
 
-            return this.Ok();
+            return this.Redirect("/");
         }
     }
 }
