@@ -1,32 +1,19 @@
-﻿@using Web.Models.Shortcut
-@model ShortcutCreateInputModel
+﻿@using Web.Models.Category
+@using Core.Entities
+@model CategoriesCreateInputModel
 @{ 
-    var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    List<Category> existingCategories = new HashSet<Category>().ToList(); // TODO: display already existing categories
 }
 
-    <h1>Add Shortcut </h1>
+    <h1>Add Category </h1>
 
     <form method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
+
         <div class="form-group row">
-            <label>Description</label>
-            <input asp-for="@Model.Description" />
+            <label>Name</label>
+            <input asp-for="@Model.Name" />
         </div>
-        <div class="form-group row">
-            <label>Category</label>
-            <select asp-for="@Model.CategoryId" asp-items="categories" />
-        </div>
-        <div class="form-group row">
-            <label>Command</label>
-            <input asp-for="@Model.Command" />
-        </div>
-        <div class="form-group row">
-            <label>Key Combination</label>
-            <input asp-for="@Model.KeyCombination" />
-        </div>
-        <div class="form-group row">
-            <label>Application</label>
-            <input asp-for="@Model.ApplicationId" />
-        </div>
-            <input type="submit" class="btn btn-primary" />
+        
+        <input type="submit" class="btn btn-primary" />
     </form>
