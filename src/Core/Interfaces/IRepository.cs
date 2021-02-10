@@ -4,8 +4,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public interface IRepository<T>
-        where T : class
+    using Core.Entities;
+
+    public interface IRepository<T, TKey>
+        where T : BaseEntity<TKey>
     {
         Task<T> GetByIdAsync(int id);
 

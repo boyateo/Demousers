@@ -7,11 +7,12 @@
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Core.Entities;
     using Core.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
-    public class EFRepository<T> : IRepository<T>
-        where T : class
+    public class EFRepository<T, TKey> : IRepository<T, TKey>
+        where T : BaseEntity<TKey>
     {
         private readonly EfMSQLContext dbContext;
 

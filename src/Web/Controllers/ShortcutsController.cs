@@ -12,14 +12,14 @@
 
     public class ShortcutsController : Controller
     {
-        private readonly IRepository<Shortcut> shortcutsRepository;
-        private readonly IRepository<Category> categoriesRepository;
-        private readonly IRepository<Application> applicatonRepository;
+        private readonly IRepository<Shortcut, int> shortcutsRepository;
+        private readonly IRepository<Category, int> categoriesRepository;
+        private readonly IRepository<Application, int> applicatonRepository;
 
         public ShortcutsController(
-            IRepository<Shortcut> shortcutsRepository,
-            IRepository<Category> categoriesRepository,
-            IRepository<Application> applicatonRepository)
+            IRepository<Shortcut, int> shortcutsRepository,
+            IRepository<Category, int> categoriesRepository,
+            IRepository<Application, int> applicatonRepository)
         {
             this.shortcutsRepository = shortcutsRepository;
             this.categoriesRepository = categoriesRepository;

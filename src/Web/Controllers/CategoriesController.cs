@@ -12,9 +12,9 @@
 
     public class CategoriesController : Controller
     {
-        private readonly IRepository<Category> categoriesRepository;
+        private readonly IRepository<Category, int> categoriesRepository;
 
-        public CategoriesController(IRepository<Category> categoriesRepository)
+        public CategoriesController(IRepository<Category, int> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }

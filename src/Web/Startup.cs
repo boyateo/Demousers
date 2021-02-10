@@ -32,7 +32,7 @@
             services.AddDbContext<EfMSQLContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            services.AddScoped(typeof(IRepository<,>), typeof(EFRepository<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

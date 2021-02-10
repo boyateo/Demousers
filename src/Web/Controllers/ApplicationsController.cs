@@ -13,9 +13,9 @@
 
     public class ApplicationsController : Controller
     {
-        private readonly IRepository<Application> applicationsRepository;
+        private readonly IRepository<Application, int> applicationsRepository;
 
-        public ApplicationsController(IRepository<Application> applicationsRepository)
+        public ApplicationsController(IRepository<Application, int> applicationsRepository)
         {
             this.applicationsRepository = applicationsRepository;
         }

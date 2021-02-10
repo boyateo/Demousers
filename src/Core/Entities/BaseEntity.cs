@@ -6,7 +6,7 @@
     public abstract class BaseEntity<TKey> : IModificationInformation
     {
         [Key]
-        public TKey Id { get; set; }
+        public TKey Id { get; protected set; }
 
         public DateTime CreatedOn { get; set; }
 
