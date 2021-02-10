@@ -21,17 +21,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (true) // TODO: add condition
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Shortcuts" asp-action="Create">Add Shortcut</a>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Create">Add Category</a>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="Create">Add Application</a>
-                            </li>
-                        }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administration
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Shortcuts" asp-action="Create">Add Shortcut</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Create">Add Category</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Applications" asp-action="Create">Add Application</a>
+                            </div>
+                        </li>
+
+                        <li id="admin" class="nav-item" style="display: none;">
+                            
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -41,7 +50,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div>  
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -54,3 +63,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
