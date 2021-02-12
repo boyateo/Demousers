@@ -1,4 +1,4 @@
-﻿@using Web.Models.Shortcut
+﻿@using ViewModels.Shortcut
 @model ShortcutCreateInputModel
 @{ 
     var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));

@@ -4,8 +4,6 @@
     {
         public string KeyCombination { get; set; }
 
-        public string Command { get; set; }
-
         public string Description { get; set; }
 
         // Db relations

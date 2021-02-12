@@ -8,7 +8,7 @@
     using Core.Entities;
     using Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
-    using Web.Models.Category;
+    using ViewModels.Category;
 
     public class CategoriesController : Controller
     {

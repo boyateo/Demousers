@@ -1,4 +1,4 @@
-﻿namespace Web.Models.Shortcut
+﻿namespace ViewModels.Shortcut
 {
     using System;
     using System.Collections.Generic;

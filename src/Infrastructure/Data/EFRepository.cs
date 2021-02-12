@@ -54,6 +54,7 @@
             return await this.dbContext.Set<T>().FindAsync(id);
         }
 
+        // TODO: return IQueryable maybe?
         public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
             var result = await this.dbContext.Set<T>().ToListAsync(cancellationToken);

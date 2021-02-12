@@ -1,4 +1,4 @@
-﻿namespace Web.Models.Application
+﻿namespace ViewModels.Application
 {
     public class ApplicationEditInputModel
     {

@@ -8,8 +8,8 @@
     using Core.Entities;
     using Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
-    using Web.Models.Application;
-    using Web.Models.Shortcut;
+    using ViewModels.Application;
+    using ViewModels.Shortcut;
 
     public class ApplicationsController : Controller
     {

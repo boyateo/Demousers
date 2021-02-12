@@ -8,20 +8,20 @@
     using Core.Entities;
     using Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
-    using Web.Models.Shortcut;
+    using ViewModels.Shortcut;
 
     public class ShortcutsController : Controller
     {
-        private readonly IRepository<Shortcut, int> shortcutsRepository;
+        private readonly IShortcutService shortcutService;
         private readonly IRepository<Category, int> categoriesRepository;
         private readonly IRepository<Application, int> applicatonRepository;
 
         public ShortcutsController(
-            IRepository<Shortcut, int> shortcutsRepository,
+            IShortcutService shortcutService,
             IRepository<Category, int> categoriesRepository,
             IRepository<Application, int> applicatonRepository)
         {
-            this.shortcutsRepository = shortcutsRepository;
+            this.shortcutService = shortcutService;
             this.categoriesRepository = categoriesRepository;
             this.applicatonRepository = applicatonRepository;
         }
@@ -47,16 +47,7 @@
         [HttpPost]
         public async Task<IActionResult> Create(ShortcutCreateInputModel input)
         {
-            var newShortcut = new Shortcut
-            {
-                Command = input.Command,
-                ApplicationId = input.ApplicationId,
-                CategoryId = input.CategoryId,
-                Description = input.Description,
-                KeyCombination = input.KeyCombination,
-            };
-
-            await this.shortcutsRepository.AddAsync(newShortcut);
+            await this.shortcutService.CreateShortcutAsync(input.ApplicationId, input.CategoryId, input.Description, input.KeyCombination);
 
             return this.Ok();
         }

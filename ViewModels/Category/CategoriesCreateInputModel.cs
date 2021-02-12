@@ -1,4 +1,4 @@
-﻿namespace Web.Models.Category
+﻿namespace ViewModels.Category
 {
     public class CategoriesCreateInputModel
     {
