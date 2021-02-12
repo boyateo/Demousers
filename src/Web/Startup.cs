@@ -14,6 +14,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Services;
 
     public class Startup
     {
@@ -33,6 +34,8 @@
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<,>), typeof(EFRepository<,>));
+
+            services.AddTransient<IShortcutService, ShortcutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
