@@ -13,32 +13,31 @@
     public class ShortcutsController : Controller
     {
         private readonly IShortcutService shortcutService;
-        private readonly IRepository<Category, int> categoriesRepository;
-        private readonly IRepository<Application, int> applicatonRepository;
+        private readonly ICategoryService categoryService;
+        private readonly IApplicationService applicationService;
 
         public ShortcutsController(
             IShortcutService shortcutService,
-            IRepository<Category, int> categoriesRepository,
-            IRepository<Application, int> applicatonRepository)
+            ICategoryService categoryService,
+            IApplicationService applicationService)
         {
             this.shortcutService = shortcutService;
-            this.categoriesRepository = categoriesRepository;
-            this.applicatonRepository = applicatonRepository;
+            this.categoryService = categoryService;
+            this.applicationService = applicationService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             // TODO: use services
-            var categories = await this.categoriesRepository.ListAllAsync();
-            var categoriesItems = categories.Select(x => x).OrderBy(x => x.Name).ToList();
-            var applications = await this.applicatonRepository.ListAllAsync();
-            var applicationsItems = applications.Select(x => x).OrderBy(x => x.Name).ToList();
+            var categories = this.categoryService.ListAll();
+            var applications = this.applicationService.ListAll();
 
             var vm = new ShortcutCreateInputModel
             {
-                Categories = categoriesItems,
-                Applications = applicationsItems,
+                // TODO: ????????????
+                Categories = (List<Category>)categories,
+                Applications = (List<Application>)applications,
             };
 
             return this.View(vm);

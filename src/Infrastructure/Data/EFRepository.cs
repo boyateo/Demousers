@@ -62,9 +62,11 @@
             return result;
         }
 
-        public Task<IReadOnlyList<T>> ListAsync()
+        public IQueryable<T> ListAllAsyncAsQuery()
         {
-            throw new NotImplementedException();
+            var query = this.dbContext.Set<T>();
+
+            return query;
         }
 
         public async Task UpdateAsync(T entity)

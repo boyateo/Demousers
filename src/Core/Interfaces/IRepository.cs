@@ -1,6 +1,7 @@
 ﻿namespace Core.Interfaces
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@
 
         Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<T>> ListAsync();
+        IQueryable<T> ListAllAsyncAsQuery();
 
         Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
 
