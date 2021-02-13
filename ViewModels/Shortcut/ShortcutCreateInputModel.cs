@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using Core.Entities;
+    using ViewModels.Category;
 
     public class ShortcutCreateInputModel
     {
@@ -17,10 +18,10 @@
 
         public int CategoryId { get; set; }
 
-        public List<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
 
         public int ApplicationId { get; set; }
 
-        public List<Application> Applications { get; set; }
+        public IEnumerable<Application> Applications { get; set; }
     }
 }

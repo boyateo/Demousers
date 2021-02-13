@@ -10,22 +10,26 @@
     public interface IRepository<T, TKey>
         where T : BaseEntity<TKey>
     {
-        Task<T> GetByIdAsync(int id);
-
-        Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default);
-
-        IQueryable<T> ListAllAsyncAsQuery();
-
+        // Create
         Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task UpdateAsync(T entity);
+        // Read
+        Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(T entity);
+        IQueryable<T> ListAllAsyncAsQuery(); // ??? do I need this one?
+
+        Task<T> GetByIdAsync(int id);
 
         Task<int> CountAsync();
 
         Task<T> FirstAsync();
 
         Task<T> FirstOrDefaultAsync();
+
+        // Update
+        Task UpdateAsync(T entity);
+
+        // Delete
+        Task DeleteAsync(T entity);
     }
 }

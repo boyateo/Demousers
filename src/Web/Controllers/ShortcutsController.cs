@@ -29,15 +29,13 @@
         [HttpGet]
         public IActionResult Create()
         {
-            // TODO: use services
-            var categories = this.categoryService.ListAll();
+            var categories = this.categoryService.ReadAll();
             var applications = this.applicationService.ListAll();
 
             var vm = new ShortcutCreateInputModel
             {
-                // TODO: ????????????
-                Categories = (List<Category>)categories,
-                Applications = (List<Application>)applications,
+                Categories = categories,
+                Applications = applications,
             };
 
             return this.View(vm);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Category;
 
 namespace Services
 {
@@ -17,7 +18,7 @@ namespace Services
             this.categoryRepository = categoryRepository;
         }
 
-        public async Task CreateCategory(string name)
+        public async Task Create(string name)
         {
             var newCategory = new Category
             {
@@ -27,7 +28,7 @@ namespace Services
             await this.categoryRepository.AddAsync(newCategory);
         }
 
-        public IEnumerable<Category> ListAll()
+        public IEnumerable<Category> ReadAll()
         {
             var allCategories = this.categoryRepository.ListAllAsyncAsQuery()
                 .OrderBy(x => x.Name)
@@ -38,6 +39,21 @@ namespace Services
                 .ToList();
 
             return allCategories;
+        }
+
+        // TODO: Temp
+        public IEnumerable<CategoryViewModel> ListAll<T>()
+        {
+            var query = this.categoryRepository.ListAllAsync().OrderBy(x => x.Name);
+
+            var queryFromDbMappedToList = query
+                .Select(x => new CategoryViewModel()
+                { 
+                    Name = x.Name,
+                })
+                .ToList();
+
+            return queryFromDbMappedToList;
         }
     }
 }

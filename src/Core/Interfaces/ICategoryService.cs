@@ -7,8 +7,10 @@
 
     public interface ICategoryService
     {
-        Task CreateCategory(string name);
+        // Create
+        Task Create(string name);
 
-        IEnumerable<Category> ListAll();
+        // Read
+        IEnumerable<Category> ReadAll();
     }
 }

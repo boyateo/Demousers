@@ -21,6 +21,7 @@
             this.dbContext = dbContext;
         }
 
+        // Create
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await this.dbContext.Set<T>().AddAsync(entity);
@@ -29,12 +30,26 @@
             return entity;
         }
 
-        public Task<int> CountAsync()
+        // Read
+        // TODO: Most developers suggest not to return IQueryable from a repository!
+        // But what if we use a service aswell it through a service? Use private modifyer?
+        // TODO: return IQueryable maybe?
+        public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var result = await this.dbContext.Set<T>().ToListAsync(cancellationToken);
+
+            return result;
         }
 
-        public Task DeleteAsync(T entity)
+        // TODO: how to encapsulate this method and where? Here or in the service so it is not exposed in the app everywhere.
+        public IQueryable<T> ListAllAsyncAsQuery()
+        {
+            var query = this.dbContext.Set<T>();
+
+            return query;
+        }
+
+        public Task<int> CountAsync()
         {
             throw new NotImplementedException();
         }
@@ -54,25 +69,17 @@
             return await this.dbContext.Set<T>().FindAsync(id);
         }
 
-        // TODO: return IQueryable maybe?
-        public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
-        {
-            var result = await this.dbContext.Set<T>().ToListAsync(cancellationToken);
-
-            return result;
-        }
-
-        public IQueryable<T> ListAllAsyncAsQuery()
-        {
-            var query = this.dbContext.Set<T>();
-
-            return query;
-        }
-
+        // Update
         public async Task UpdateAsync(T entity)
         {
             this.dbContext.Entry(entity).State = EntityState.Modified;
             await this.dbContext.SaveChangesAsync();
+        }
+
+        // Delete
+        public Task DeleteAsync(T entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

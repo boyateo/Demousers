@@ -37,6 +37,7 @@
 
             services.AddTransient<IShortcutService, ShortcutService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IApplicationService, ApplicationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
