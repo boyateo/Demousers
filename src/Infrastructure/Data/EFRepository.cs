@@ -32,8 +32,9 @@
 
         // Read
         // TODO: Most developers suggest not to return IQueryable from a repository!
-        // But what if we use a service aswell it through a service? Use private modifyer?
-        // TODO: return IQueryable maybe?
+        // But what if we use a service aswell? Use private modifyer?
+        // (Ardalis usues specification as NikolayIt uses services, kindof.)
+        // repository with services represent open close principle
         public async Task<IEnumerable<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
             var result = await this.dbContext.Set<T>().ToListAsync(cancellationToken);

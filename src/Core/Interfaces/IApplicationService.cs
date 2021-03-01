@@ -10,5 +10,7 @@
         Task CreateApplicatio(string name, string version);
 
         IEnumerable<Application> ListAll();
+
+        IEnumerable<Application> ListNMostFrequentlyUsed(int n);
     }
 }

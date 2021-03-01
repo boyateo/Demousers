@@ -44,7 +44,7 @@ namespace Services
         // TODO: Temp
         public IEnumerable<CategoryViewModel> ListAll<T>()
         {
-            var query = this.categoryRepository.ListAllAsync().OrderBy(x => x.Name);
+            var query = this.categoryRepository.ListAllAsyncAsQuery().OrderBy(x => x.Name);
 
             var queryFromDbMappedToList = query
                 .Select(x => new CategoryViewModel()

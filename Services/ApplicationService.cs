@@ -40,5 +40,21 @@ namespace Services
 
             return applications;
         }
+
+        public IEnumerable<Application> ListNMostFrequentlyUsed(int n)
+        {
+            var applications = applicatonRepository.ListAllAsyncAsQuery()
+                .OrderBy(x => x.ModifiedOn)
+                .ThenBy(x => x.Name)
+                .Take(n)
+                .Select(x => new Application() 
+                {
+                    Name = x.Name,
+                    Version = x.Version,
+                    // ImageUri = x.ImageUri,
+                }).ToList();
+
+            return applications;
+        }
     }
 }
