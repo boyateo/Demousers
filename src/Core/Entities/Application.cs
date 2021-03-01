@@ -13,6 +13,8 @@
 
         public string Version { get; set; }
 
+        public string ImageUri { get; set; }
+
         // Db relations
         public virtual IEnumerable<Shortcut> Shortcuts { get; set; }
     }

@@ -51,7 +51,7 @@ namespace Services
                 {
                     Name = x.Name,
                     Version = x.Version,
-                    // ImageUri = x.ImageUri,
+                    ImageUri = x.ImageUri,
                 }).ToList();
 
             return applications;
